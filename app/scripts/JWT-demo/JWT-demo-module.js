@@ -3,11 +3,15 @@
  */
 'use strict';
 
-angular
-  .module('JWTDemo', [],config)
-  .constant('API_URL', 'http://localhost:3000');
+(function () {
 
-config.$inject = ['$httpProvider'];
-function config($httpProvider) {
-  $httpProvider.interceptors.push('authInterceptor');
-}
+  angular
+    .module('JWTDemo', [], config)
+    .constant('API_URL', 'http://localhost:3000');
+
+  config.$inject = ['$httpProvider'];
+  function config($httpProvider) {
+    $httpProvider.interceptors.push('authInterceptor');
+  }
+
+}());

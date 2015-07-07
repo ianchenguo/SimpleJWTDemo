@@ -6,6 +6,6 @@
 (function () {
 
   angular
-    .module('templateCacheDemo', []);
+    .module('tabDirectiveDemo', []);
 }());
 

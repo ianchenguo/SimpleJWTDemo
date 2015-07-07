@@ -3,38 +3,43 @@
  */
 'use strict';
 
-angular
-  .module('JWTDemo')
-  .factory('userFactory', userFactory);
+(function () {
 
-userFactory.$inject = ['$q', '$http', 'API_URL', 'authTokenFactory'];
-function userFactory($q, $http, API_URL,authTokenFactory) {
+  angular
+    .module('JWTDemo')
+    .factory('userFactory', userFactory);
 
-  var login = function getUser(username, password) {
-    return $http.post(API_URL + '/login', {
-      username: username,
-      password: password
-    })
-      .then(function success(response) {
-        authTokenFactory.setToken(response.data.token);
-        return response;
+  userFactory.$inject = ['$q', '$http', 'API_URL', 'authTokenFactory'];
+  function userFactory($q, $http, API_URL, authTokenFactory) {
+
+    var login = function getUser(username, password) {
+      return $http.post(API_URL + '/login', {
+        username: username,
+        password: password
       })
-  };
+        .then(function success(response) {
+          authTokenFactory.setToken(response.data.token);
+          return response;
+        })
+    };
 
-  var logout = function logout() {
-    authTokenFactory.setToken();
-  };
+    var logout = function logout() {
+      authTokenFactory.setToken();
+    };
 
-  var getUser = function getUser() {
-    if(authTokenFactory.getToken()) {
-      return $http.get(API_URL + '/me');
-    } else {
-      return $q.reject({data:'client has no auth token'});
+    var getUser = function getUser() {
+      if (authTokenFactory.getToken()) {
+        return $http.get(API_URL + '/me');
+      } else {
+        return $q.reject({data: 'client has no auth token'});
+      }
+    };
+    return {
+      login: login,
+      logout: logout,
+      getUser: getUser
     }
-  };
-  return {
-    login: login,
-    logout: logout,
-    getUser:getUser
   }
-}
+
+
+}());

@@ -3,15 +3,20 @@
  */
 'use strict';
 
-angular
-.module('templateCacheDemo')
-.controller('TemplateCacheDemoCtrl',TemplateCacheDemoCtrl);
+(function () {
+  angular
+    .module('templateCacheDemo')
+    .controller('TemplateCacheDemoCtrl', TemplateCacheDemoCtrl);
 
-TemplateCacheDemoCtrl.$inject = ['$templateCache'];
-function TemplateCacheDemoCtrl($templateCache) {
-  var vm = this;
-  vm.user = {name:'Chen'};
+  TemplateCacheDemoCtrl.$inject = ['$templateCache'];
+  function TemplateCacheDemoCtrl($templateCache) {
+    var vm = this;
+    vm.user = {name: 'Chen'};
 
-  vm.templateCacheContent = $templateCache
-    .get('scripts/template-cache-demo/template-cache-demo-view.html');
-}
+    vm.templateCacheContent = $templateCache
+      .get('scripts/template-cache-demo/template-cache-demo-view.html');
+  }
+}());
+
+
+

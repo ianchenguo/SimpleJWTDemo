@@ -3,26 +3,26 @@
  */
 'use strict';
 
-angular
-  .module('JWTDemo')
-  .factory('authInterceptor',authInterceptor);
+(function () {
+  angular
+    .module('JWTDemo')
+    .factory('authInterceptor', authInterceptor);
 
-authInterceptor.$inject = ['authTokenFactory'];
-function authInterceptor(authTokenFactory) {
+  authInterceptor.$inject = ['authTokenFactory'];
+  function authInterceptor(authTokenFactory) {
 
-  var addtoken = function addToken(config) {
-    var token = authTokenFactory.getToken();
-    if(token) {
-      config.headers = config.headers || {};
-      config.headers.Authorization = 'Bearer ' + token;
+    var addtoken = function addToken(config) {
+      var token = authTokenFactory.getToken();
+      if (token) {
+        config.headers = config.headers || {};
+        config.headers.Authorization = 'Bearer ' + token;
+      }
+      return config;
+    };
+
+    return {
+      request: addtoken
     }
-    return config;
-  };
-
-  return {
-    request:addtoken
   }
 
-
-
-}
+}());

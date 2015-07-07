@@ -20,7 +20,8 @@ angular
     'ngTouch',
 
     'JWTDemo',
-    'templateCacheDemo'
+    'templateCacheDemo',
+    'tabDirectiveDemo'
   ])
   .config(function ($routeProvider) {
     $routeProvider

@@ -6,18 +6,18 @@
 (function () {
 
   angular
-    .module('templateCacheDemo')
+    .module('tabDirectiveDemo')
     .config(config);
 
   config.$inject = ['$routeProvider'];
   function config($routeProvider) {
     $routeProvider
-      .when('/template-cache-demo', {
-        controller: 'TemplateCacheDemoCtrl',
+      .when('/tab-directive-demo', {
+        controller: 'tabDirectiveDemoCtrl',
         controllerAs: 'vm',
-        templateUrl: 'scripts/template-cache-demo/template-cache-demo-view.html'
+        templateUrl: 'scripts/tab-directive-demo/tab-directive-demo-view.html'
       })
   }
-}());
 
+}());
 
